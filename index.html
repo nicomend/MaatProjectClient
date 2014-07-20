@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html ng-app="store" lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/toolbar.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body ng-controller="Worker">
+<div class="navber navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-right">
+            <span class="navbar-brand">מצב עובד</span>
+        </div>
+        <div class="navbar-header">
+            <div class="navbar-brand"><a href="admin.html">לוח הבקרה למנהל</a></div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-10">
+            <div class="panelAnimate" ng-view></div>
+        </div>
+        <div class="col-md-2 sidebar">
+            <ul class="nav">
+                <li ng-repeat="tab in tabs" ng-class="{active: isActive(tab)}"><a
+                        href="#{{tab.url}}">{{tab.label}}<span class="badge" style="margin-right: 1px;"
+                                                               ng-show="tab.url === '/cart'">{{cart.length}}</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<label>שם המוצר</label>
+<input type='text' class="form-control" ng-model="newProduct.name"
+       required="required"/>
+<label>שם הקטגוריה</label>
+<select class="form-control" ng-model="newProduct.category" ng-options="c.name for c in categories"
+        required="required"></select>
+<label>מחיר</label>
+<input type='number' class="form-control" ng-model="newProduct.price"
+       required="required"/>
+<br/>
+<button class='btn btn-success btn-sm' ng-click='create()'
+        ng-disabled="createForm.$invalid">אישור
+</button>

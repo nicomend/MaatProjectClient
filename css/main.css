@@ -1,0 +1,61 @@
+th {
+	text-align: right;
+}
+
+.sub-header {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+}
+
+ul {
+	padding: 0px;
+}
+
+.sidebar {
+	position: fixed;
+	top: 50px;
+	bottom: 0px;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #222;
+	border-left: 1px solid #eee;
+	padding: 0px;
+}
+
+.sidebar li a
+{
+	background-image:#222;
+	color: #999;
+}
+
+.sidebar li.active,
+.sidebar li.active a,
+.sidebar li a:hover
+{
+	background: #000;
+	color: #fff;
+}
+
+.navbar
+{
+	margin: 0px;
+}
+
+.panelAnimate.ng-enter {
+	-webkit-animation: fadeInRight 0.6s;
+}
+
+.rowInTable.ng-enter {
+	-webkit-animation: fadeIn 0.6s;
+}
+
+.rowInTable.ng-leave {
+	-webkit-animation: fadeOut 0.2s;
+}
+
+.chart
+{
+    width: 500px;
+    height: 200px;
+}

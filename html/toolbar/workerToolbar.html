@@ -1,0 +1,9 @@
+<div ng-controller="Toolbar">
+    <div class="btn-group">
+        <button tooltip="חפש" class="btn btn-info"
+                ng-click="toggleAction('search')" ng-disabled="items.length == 0">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </div>
+    <div class="panelAnimate" ng-include="getActionTemplateURL()"></div>
+</div>

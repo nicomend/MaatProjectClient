@@ -1,0 +1,21 @@
+
+<h2 class="sub-header">קטגוריות</h2>
+<div ng-include="toolbar"></div>
+<table class="table table-hover" style="width: 50%;"
+       ng-hide="categories.length == 0">
+    <thead>
+    <tr>
+        <th>שם הקטגוריה</th>
+        <th>כמות מוצרים</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="category in categories | filter:searchCategory"
+        class="rowInTable">
+        <td>{{category.name}}</td>
+        <td>{{category.itemsCount}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="alert alert-danger" style="margin-top: 5px;"
+     ng-show="categories.length == 0">לא קיימות קטגוריות במערכת</div>

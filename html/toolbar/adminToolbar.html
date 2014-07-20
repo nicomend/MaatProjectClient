@@ -1,0 +1,19 @@
+<div ng-controller="Toolbar">
+<div class="btn-group">
+	<button tooltip="מחק הכל" ng-click="
+			clear()"
+		class="btn btn-danger" ng-disabled="items.length == 0">
+		<span class="glyphicon glyphicon-trash"></span>
+	</button>
+	<button tooltip="חפש" class="btn btn-info"
+		ng-click="toggleAction('search')" ng-disabled="items.length == 0">
+		<span class="glyphicon glyphicon-search"></span>
+	</button>
+	<button tooltip="צור" class="btn btn-success"
+		ng-click="toggleAction('create')">
+		<span class="glyphicon glyphicon-plus-sign"></span>
+	</button>
+</div>
+<div class="panelAnimate" ng-include="getActionTemplateURL()"></div>
+</div>
+

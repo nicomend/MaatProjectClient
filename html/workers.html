@@ -1,0 +1,26 @@
+<h2 class="sub-header">ניהול עובדים</h2>
+<div ng-include="toolbar"></div>
+<table class="table table-hover" style="width: 50%;"
+	ng-hide="workers.length == 0">
+	<thead>
+		<tr>
+			<th>תעודת זהות</th>
+			<th>שם העובד</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="worker in workers | filter:searchWorker"
+			class="rowInTable">
+			<td>{{worker.id}}</td>
+			<td>{{worker.name}}</td>
+		</tr>
+	</tbody>
+</table>
+<div class="alert alert-danger" style="margin-top: 5px;"
+	ng-show="workers.length == 0">
+	עדיין לא הוספת עובדים למערכת, לחץ על
+	<button class="btn btn-sm btn-success">
+		<span class="glyphicon glyphicon-plus-sign"></span>
+	</button>
+	כדי להתחיל
+</div>
