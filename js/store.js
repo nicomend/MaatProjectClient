@@ -19,9 +19,10 @@ app.config([ '$routeProvider', function ($routeProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }]);
 
-function Worker($scope, $location) {
+function Store($scope, $location) {
     $scope.toolbar = "html/toolbar/workerToolbar.html";
 
+    $scope.user = false;
     $scope.cart = [];
 
     // init menu items
