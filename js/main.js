@@ -10,6 +10,10 @@ function Main($scope, $http) {
         "lineLegend": 'traditional' // can be also 'traditional'
     }
 
+    $http.get("http://localhost:9000/sales").success(function(data, status){
+       $scope.sales = data;
+    });
+
     $scope.chartType = "pie";
 
     $scope.data = {

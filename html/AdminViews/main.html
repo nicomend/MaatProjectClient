@@ -19,7 +19,20 @@
     <div class="panel panel-primary">
         <div class="panel-heading">5 מכירות אחרונות</div>
         <div class="panel-body">
-            גדשגד
+            <table class="table table-bordered table-hover">
+                <thead>
+                <th>שם העובד</th>
+                <th>סכום המכירה</th>
+                <th>פרטים נוספים</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="sale in sales">
+                    <td>{{sale.worker.name}}</td>
+                    <td>{{sale.amount}}₪</td>
+                    <td><button ng-click="saleInfo(sale)" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-info-sign"></span></button></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
