@@ -16,35 +16,27 @@ function Main($scope, $http) {
 
     $scope.chartType = "pie";
 
-    $scope.data = {
-        "series": [
-            "Sales"
-        ],
-        "data": [
-            {
-                "x": "עובד א'",
-                "y": [
-                    53
-                ]
-            },
-            {
-                "x": "עובד ב'",
-                "y": [
-                    150
-                ]
-            },
-            {
-                "x": "עובד d'",
-                "y": [
-                    150
-                ]
-            },
-            {
-                "x": "עובד ds'",
-                "y": [
-                    150
-                ]
-            }
-        ]
-    }
+    $http.get('http://localhost:9000/workers').success(function(data, status){
+        $scope.workersCount = data.length;
+       var salesByWorkers = [];
+        var moneyByWorkers = [];
+        angular.forEach(data, function (worker, key) {
+            salesByWorkers.push({"x" : worker.name, "y" : [worker.salesCount]});
+            moneyByWorkers.push({"x" : worker.name, "y" : [worker.salesAmount]});
+        });
+
+        $scope.salesByWorkersChart = {
+            "series": [
+                "Sales"
+            ],
+            "data": salesByWorkers
+        }
+
+        $scope.moneyByWorkersChart = {
+            "series": [
+                "Money"
+            ],
+            "data": moneyByWorkers
+        }
+    });
 }
