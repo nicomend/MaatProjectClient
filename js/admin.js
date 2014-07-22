@@ -10,11 +10,14 @@ app.config([ '$routeProvider', function ($routeProvider) {
     }).when('/workers', {
         templateUrl: 'html/adminViews/workers.html',
         controller: 'Workers'
+    }).when('/sales', {
+        templateUrl: 'html/adminViews/sales.html',
+        controller: 'Sales'
     }).when('/main', {
         templateUrl: 'html/adminViews/main.html',
         controller: 'Main'
     }).otherwise({redirectTo: '/main'})
-} ],['$httpProvider', function ($httpProvider) {
+} ], ['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }]);
@@ -45,6 +48,10 @@ function Admin($scope, $location) {
         {
             'label': 'ניהול עובדים',
             url: '/workers'
+        },
+        {
+            'label': 'מכירות',
+            url: '/sales'
         }
     ];
 

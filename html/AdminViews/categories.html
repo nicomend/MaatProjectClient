@@ -1,7 +1,7 @@
 
 <h2 class="sub-header">ניהול קטגוריות</h2>
 <div ng-include="toolbar"></div>
-<table class="table table-hover" style="width: 50%;"
+<table class="table table-hover"
        ng-hide="categories.length == 0">
     <thead>
     <tr>
@@ -27,7 +27,7 @@
 <div class="alert alert-danger" style="margin-top: 5px;"
      ng-show="categories.length == 0">
     עדיין לא הוספת קטגוריות למערכת, לחץ על
-    <button class="btn btn-sm btn-success">
+    <button class="btn btn-xs btn-success" disabled>
         <span class="glyphicon glyphicon-plus-sign"></span>
     </button>
     כדי להתחיל

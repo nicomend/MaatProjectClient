@@ -1,5 +1,7 @@
 function Categories($scope, $http) 
 {
+    $scope.categories = [];
+
 	$http.get('http://localhost:9000/categories').success(function(data, status) {
 		$scope.categories = data;
 	});

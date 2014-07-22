@@ -10,7 +10,7 @@ function Main($scope, $http) {
         "lineLegend": 'traditional' // can be also 'traditional'
     }
 
-    $http.get("http://localhost:9000/sales").success(function(data, status){
+    $http.get("http://localhost:9000/sales/5").success(function(data, status){
        $scope.sales = data;
     });
 

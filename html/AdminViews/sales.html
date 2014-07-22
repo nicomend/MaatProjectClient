@@ -1,0 +1,19 @@
+<h2 class="sub-header">מכירות</h2>
+<table class="table table-hover" ng-show="sales.length > 0">
+    <thead>
+    <th>שם העובד</th>
+    <th>סכום המכירה</th>
+    <th>פרטים נוספים</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="sale in sales">
+        <td>{{sale.worker.name}}</td>
+        <td>{{sale.amount}}₪</td>
+        <td>
+            <button ng-click="saleInfo(sale)" class="btn btn-info btn-xs"><span
+                    class="glyphicon glyphicon-info-sign"></span></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="alert alert-danger text-center" ng-show="sales.length == 0">אין מכירות</div>
