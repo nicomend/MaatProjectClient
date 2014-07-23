@@ -38,7 +38,7 @@
                 <ul class="nav">
                     <li ng-repeat="tab in tabs" ng-class="{active: isActive(tab)}"><a
                             href="#{{tab.url}}">{{tab.label}}<span class="badge" style="margin-right: 1px;"
-                                                                   ng-show="tab.url === '/cart'">{{cart.length}}</span></a>
+                                                                   ng-show="tab.url === '/cart'">{{cart.products.length}}</span></a>
                     </li>
                 </ul>
             </div>
