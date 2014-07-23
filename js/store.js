@@ -23,7 +23,7 @@ function Store($scope, $location) {
     $scope.toolbar = "html/toolbar/workerToolbar.html";
 
     $scope.user = false;
-    $scope.cart = [];
+    $scope.cart = {products: [], currentPrice: 0, checkoutCompleted: false};
 
     // init menu items
     $scope.tabs = [
@@ -42,10 +42,28 @@ function Store($scope, $location) {
     ];
 
     $scope.addToCart = function (product) {
-        $scope.cart.push(product);
-    }
+        if($scope.cart.products.length === 0)
+        {
+            $scope.cart.checkoutCompleted = false;
+        }
+        $scope.cart.products.push(product);
+
+        $scope.cart.currentPrice += product.price;
+    };
+
+    $scope.removeFromCart = function(product){
+        var index = $scope.cart.products.indexOf(product);
+        $scope.cart.products.splice(index, 1);
+
+        $scope.cart.currentPrice -= product.price;
+    };
 
     $scope.isActive = function (tab) {
         return tab.url === $location.path();
+    };
+
+    $scope.newCart = function()
+    {
+        $scope.cart.checkoutCompleted = false
     }
 }
