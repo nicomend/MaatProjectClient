@@ -1,7 +1,7 @@
 /**
  * Created by Idan on 18/07/14.
  */
-var app = angular.module("store", [ "ngRoute", "ngAnimate", "ui.bootstrap" ]);
+var app = angular.module("store", [ "ngRoute", "ngAnimate", "ui.bootstrap", "LocalStorageModule" ]);
 
 app.config([ '$routeProvider', function ($routeProvider) {
     $routeProvider.when('/categories', {
@@ -19,11 +19,26 @@ app.config([ '$routeProvider', function ($routeProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }]);
 
-function Store($scope, $location) {
+function Store($scope, $location, $http) {
+    var sessionKey = "user";
     $scope.toolbar = "html/toolbar/workerToolbar.html";
+    $scope.login = "html/workerViews/login.html";
 
-    $scope.user = false;
-    $scope.cart = {products: [], currentPrice: 0, checkoutCompleted: false};
+    localStorage.clear();
+    $scope.refreshUser = function()
+    {
+        $scope.user = sessionStorage.getItem(sessionKey);
+        $scope.isUserConnected = $scope.user != null;
+    }
+
+    $scope.refreshUser();
+    if (sessionStorage.getItem("cart") == null) {
+        $scope.cart = {products: [], currentPrice: 0, checkoutCompleted: false};
+    }
+    else
+    {
+        $scope.cart = JSON.parse(sessionStorage.getItem("cart"));
+    }
 
     // init menu items
     $scope.tabs = [
@@ -42,28 +57,37 @@ function Store($scope, $location) {
     ];
 
     $scope.addToCart = function (product) {
-        if($scope.cart.products.length === 0)
-        {
+        if ($scope.cart.products.length === 0) {
             $scope.cart.checkoutCompleted = false;
         }
-        $scope.cart.products.push(product);
-
+        $scope.cart.products.push(angular.copy(product));
         $scope.cart.currentPrice += product.price;
+        sessionStorage.setItem("cart", JSON.stringify($scope.cart));
     };
 
-    $scope.removeFromCart = function(product){
+    $scope.removeFromCart = function (product) {
         var index = $scope.cart.products.indexOf(product);
         $scope.cart.products.splice(index, 1);
-
         $scope.cart.currentPrice -= product.price;
+        sessionStorage.setItem("cart", JSON.stringify($scope.cart));
     };
 
     $scope.isActive = function (tab) {
         return tab.url === $location.path();
     };
 
-    $scope.newCart = function()
-    {
-        $scope.cart.checkoutCompleted = false
-    }
+    $scope.newCart = function () {
+        $scope.cart.checkoutCompleted = false;
+        sessionStorage.setItem("cart", JSON.stringify($scope.cart));
+    };
+
+    $scope.login = function(){
+        sessionStorage.setItem(sessionKey, "nico");
+        $scope.refreshUser();
+    };
+
+    $scope.logout = function(){
+        sessionStorage.removeItem(sessionKey);
+        $scope.refreshUser();
+    };
 }

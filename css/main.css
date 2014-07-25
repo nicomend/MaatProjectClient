@@ -64,3 +64,9 @@ ul {
 {
     background-color: #c1c1c1
 }
+
+.login-block
+{
+    width: 30%;
+    padding-top: 200px;
+}

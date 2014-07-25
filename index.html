@@ -1,10 +1,11 @@
-﻿<!doctype html>
+<!doctype html>
 <html ng-app="store" lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <script src="js/angular.min.js"></script>
     <script src="js/angular-animate.min.js"></script>
     <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-local-storage.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
     <script src="js/store.js"></script>
@@ -12,25 +13,45 @@
     <script src="js/categories.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/toolbar.js"></script>
+    <script src="js/login.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/main.css"/>
 </head>
-<body ng-controller="Store" ng-class="{bodyBg: user == false}">
-<div ng-show="user">
+<body ng-controller="Store" ng-class="{bodyBg: isUserConnected == false}">
+<div ng-show="!isUserConnected">
+    <div class="center-block login-block">
+        <div class="panel panel-primary">
+            <div class="panel-heading">התחברות</div>
+            <div class="panel-body">
+                <label>תעודת זהות</label>
+                <input class="form-control" type="text"/>
+            </div>
+            <div class="panel-footer">
+                <button ng-click="login()" class="center-block btn btn-success">אישור</button>
+                {{nico}}
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="isUserConnected">
     <div class="navber navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-right">
                 <span class="navbar-brand">מצב עובד</span>
             </div>
             <div class="navbar-header">
-                <div class="navbar-brand"><a href="admin.html">לוח הבקרה למנהל</a></div>
+                <div class="navbar-brand">
+                    <div class="btn-group-xs">
+                        <a href="admin.html" class="btn btn-primary">לוח בקרה</a>
+                        <button ng-click="logout()" class="btn btn-danger">יציאה</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-md-10">
                 <div class="panelAnimate" ng-view></div>
             </div>
@@ -42,18 +63,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
-</div>
-<div ng-show="!user">
-    <div class="center-block" style="width: 30%; padding-top: 200px;">
-        <div class="panel panel-primary">
-            <div class="panel-heading">התחברות</div>
-            <div class="panel-body">
-                <label>תעודת זהות</label>
-                <input class="form-control" type="text"/>
-            </div>
-            <div class="panel-footer"><button ng-click="user = !user" class="center-block btn btn-success">אישור</button></div>
         </div>
     </div>
 </div>

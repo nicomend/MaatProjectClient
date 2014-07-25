@@ -7,6 +7,7 @@ function Cart($scope, $http)
             $scope.cart.products.splice(0, $scope.cart.products.length);
             $scope.cart.currentPrice = 0;
             $scope.cart.checkoutCompleted = true;
+            sessionStorage.setItem("cart", JSON.stringify($scope.cart));
         });
     };
 }

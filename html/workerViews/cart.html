@@ -14,23 +14,28 @@
         <td>{{product.name}}</td>
         <td>{{product.category.name}}</td>
         <td>{{product.price}}‏₪</td>
-        <td><button ng-click="removeFromCart(product)"
-                    class="btn btn-danger btn-sm">
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
+        <td>
+            <button ng-click="removeFromCart(product)"
+                    class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
         </td>
     </tr>
     </tbody>
     <tfoot>
     <tr>
-        <td style="font-weight: bold" colspan="4">מחיר סופי: {{cart.currentPrice}}</td>
+        <td style="font-weight: bold" colspan="4">
+            סה"כ: {{cart.currentPrice}}‏₪
+            <button ng-click="checkout()" class="btn btn-success btn-xs" ng-hide="cart.products.length == 0">
+                אישור
+            </button>
+        </td>
     </tr>
     </tfoot>
 </table>
-        <button ng-click="checkout()" class="btn btn-success" ng-hide="cart.products.length == 0">
-            <span class="glyphicon glyphicon-usd text-center"></span>
-        </button>
 <div ng-if="!cart.checkoutCompleted" class="alert alert-danger" style="margin-top: 5px;"
-     ng-show="cart.products.length == 0">עגלת הקניות ריקה</div>
+     ng-show="cart.products.length == 0">עגלת הקניות ריקה
+</div>
 <div class="alert alert-success" style="margin-top: 5px;"
-     ng-show="cart.checkoutCompleted">הקנייה בוצעה בהצלחה! על מנת להתחיל קנייה חדשה בחר מוצר מרשימת המוצרים</div>
+     ng-show="cart.checkoutCompleted">הקנייה בוצעה בהצלחה! על מנת להתחיל קנייה חדשה בחר מוצר מרשימת המוצרים
+</div>
