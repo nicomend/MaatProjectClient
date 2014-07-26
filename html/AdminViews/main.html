@@ -1,31 +1,31 @@
-<h2 class="sub-header">ראשי</h2>
+<h2 class="sub-header">{{lang.main}}</h2>
 <div class="col-md-6">
     <div class="panel panel-primary">
-        <div class="panel-heading">כמות מכירות לפי עובדים</div>
+        <div class="panel-heading">{{lang.salesByWorkers}}</div>
         <div class="panel-body">
             <div ng-show="workersCount > 0" ac-chart="chartType" ac-data="salesByWorkersChart" ac-config="config" id='salesByWorkersChart' class='chart'></div>
-            <div ng-show="workersCount == 0" class="alert alert-danger">אין עובדים במערכת</div>
+            <div ng-show="workersCount == 0" class="alert alert-danger">{{lang.noWorkers}}</div>
         </div>
     </div>
 </div>
 <div class="col-md-6">
     <div class="panel panel-primary">
-        <div class="panel-heading">רווח כספי לפי עובדים</div>
+        <div class="panel-heading">{{lang.financialGainsByWorkers}}</div>
         <div class="panel-body">
             <div ng-show="workersCount > 0" ac-chart="chartType" ac-data="moneyByWorkersChart" ac-config="config" id='moneyByWorkersChart' class='chart'></div>
-            <div ng-show="workersCount == 0" class="alert alert-danger">אין עובדים במערכת</div>
+            <div ng-show="workersCount == 0" class="alert alert-danger">{{lang.noWorkers}}</div>
         </div>
     </div>
 </div>
 <div class="col-md-12">
     <div class="panel panel-primary">
-        <div class="panel-heading">5 מכירות אחרונות</div>
+        <div class="panel-heading">{{lang.last5sales}}</div>
         <div class="panel-body">
             <table class="table table-hover" ng-show="sales.length > 0">
                 <thead>
-                <th>שם העובד</th>
-                <th>סכום המכירה</th>
-                <th>פרטים נוספים</th>
+                <th>{{lang.workerName}}</th>
+                <th>{{lang.saleAmount}}</th>
+                <th>{{lang.moreDetails}}</th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="sale in sales">
@@ -38,7 +38,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="alert alert-danger text-center" ng-show="sales.length == 0">אין מכירות</div>
+            <div class="alert alert-danger text-center" ng-show="sales.length == 0">{{lang.noSales}}</div>
         </div>
     </div>
 </div>

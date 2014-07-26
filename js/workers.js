@@ -15,7 +15,7 @@ function Workers($scope, $http) {
     $scope.idChanged = function () {
         $scope.isValidID = true;
         $scope.workers.forEach(function (worker) {
-            if ($scope.newWorker.idNumber == worker.idNumber) {
+            if ($scope.newWorker.id === worker.id) {
                 $scope.isValidID = false;
             }
         });

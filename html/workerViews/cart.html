@@ -1,12 +1,12 @@
-<h2 class="sub-header">עגלת קניות</h2>
-<table class="table table-hover" style="width: 50%;"
+<h2 class="sub-header">{{lang.cart}}</h2>
+<table class="table table-hover"
        ng-hide="cart.products.length == 0">
     <thead>
     <tr>
-        <th>שם המוצר</th>
-        <th>שם הקטגוריה</th>
-        <th>מחיר</th>
-        <th>הסר מהעגלה</th>
+        <th>{{lang.productName}}</th>
+        <th>{{lang.categoryName}}</th>
+        <th>{{lang.price}}</th>
+        <th>{{lang.cancel}}</th>
     </tr>
     </thead>
     <tbody>
@@ -25,17 +25,19 @@
     <tfoot>
     <tr>
         <td style="font-weight: bold" colspan="4">
-            סה"כ: {{cart.currentPrice}}‏₪
+            {{lang.saleAmount}}: {{cart.currentPrice}}₪
             <button ng-click="checkout()" class="btn btn-success btn-xs" ng-hide="cart.products.length == 0">
-                אישור
+                {{lang.ok}}
             </button>
         </td>
     </tr>
     </tfoot>
 </table>
 <div ng-if="!cart.checkoutCompleted" class="alert alert-danger" style="margin-top: 5px;"
-     ng-show="cart.products.length == 0">עגלת הקניות ריקה
+     ng-show="cart.products.length == 0">
+    {{lang.cartIsEmpty}}
 </div>
 <div class="alert alert-success" style="margin-top: 5px;"
-     ng-show="cart.checkoutCompleted">הקנייה בוצעה בהצלחה! על מנת להתחיל קנייה חדשה בחר מוצר מרשימת המוצרים
+     ng-show="cart.checkoutCompleted">
+    {{lang.checkoutCompleted}}
 </div>

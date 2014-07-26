@@ -1,27 +1,27 @@
-<h2 class="sub-header">ניהול מוצרים</h2>
+<h2 class="sub-header">{{lang.manageProducts}}</h2>
 <div ng-include="toolbar"></div>
 <table class="table table-hover"
        ng-hide="products.length == 0">
     <thead>
     <tr>
-        <th>שם המוצר</th>
-        <th>שם הקטגוריה</th>
-        <th>מחיר</th>
-        <th>מחק?</th>
+        <th>{{lang.productName}}</th>
+        <th>{{lang.categoryName}}</th>
+        <th>{{lang.price}}</th>
+        <th>{{lang.deleteQuestion}}</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="product in products | filter:searchProduct">
-        <td><a title="לחץ לעריכה" href="" editable-text="product.name"
-               e-required e-placeholder="שם המוצר" onaftersave="update(product)">{{product.name}}</a></td>
-        <td><a title="לחץ לעריכה" href=""
+        <td><a title="{{lang.pressToEdit}}" href="" editable-text="product.name"
+               e-required e-placeholder="{{lang.productName}}" onaftersave="update(product)">{{product.name}}</a></td>
+        <td><a title="{{lang.pressToEdit}}" href=""
                editable-select="product.category"
                e-ng-options="c.name for c in categories"
                onaftersave="update(product)">{{product.category.name}}</a></td>
         <td><a href="#" editable-number="product.price"
                onaftersave="update(product)">{{product.price}}‏₪</a></td>
         <td>
-            <button ng-click="delete(product.id)"
+            <button ng-click="delete(product)"
                     class="btn btn-danger btn-sm">
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
@@ -29,11 +29,10 @@
     </tr>
     </tbody>
 </table>
-<div class="alert alert-danger" style="margin-top: 5px;"
-     ng-show="products.length == 0">
-    עדיין לא הוספת מוצרים למערכת, לחץ על
+<div class="alert alert-danger admin-alert" ng-show="products.length == 0">
+    {{lang.pressToAddProducts}}
     <button class="btn btn-xs btn-success" disabled>
         <span class="glyphicon glyphicon-plus-sign"></span>
     </button>
-    כדי להתחיל
+    {{lang.toStart}}
 </div>

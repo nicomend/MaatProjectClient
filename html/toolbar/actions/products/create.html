@@ -1,13 +1,16 @@
-<label>שם המוצר</label>
-<input type='text' class="form-control" ng-model="newProduct.name"
-       required="required"/>
-<label>שם הקטגוריה</label>
-<select class="form-control" ng-model="newProduct.category" ng-options="c.name for c in categories"
-        required="required"></select>
-<label>מחיר</label>
-<input type='number' class="form-control" ng-model="newProduct.price"
-       required="required"/>
-<br/>
-<button class='btn btn-success btn-sm' ng-click='create()'
-        ng-disabled="createForm.$invalid">אישור
-</button>
+<div ng-hide="categories.length == 0">
+    <label>{{lang.productName}}</label>
+    <input type='text' class="form-control" ng-model="newProduct.name" required="required"/>
+    <label>{{lang.categoryName}}</label>
+    <select class="form-control" ng-model="newProduct.category" ng-options="c.name for c in categories"
+            required="required"></select>
+    <label>{{lang.price}}</label>
+    <input type='number' class="form-control" ng-model="newProduct.price" required="required"/>
+    <br/>
+    <button class='btn btn-success btn-sm' ng-click='create()' ng-disabled="createForm.$invalid">
+        {{lang.ok}}
+    </button>
+</div>
+<div ng-show="categories.length == 0" class="alert alert-danger">
+    {{lang.noCategories}}
+</div>

@@ -21,15 +21,35 @@
 <body ng-controller="Store" ng-class="{bodyBg: isUserConnected == false}">
 <div ng-show="!isUserConnected">
     <div class="center-block login-block">
-        <div class="panel panel-primary">
-            <div class="panel-heading">התחברות</div>
+        <div class="panel panel-success" ng-hide="hasUsers">
+            <div class="panel-heading">{{lang.createFirstUser}}</div>
             <div class="panel-body">
-                <label>תעודת זהות</label>
-                <input class="form-control" type="text"/>
+                <form name="registerform">
+                <label>{{lang.idNumber}}</label>
+                <input class="form-control" type="text" ng-pattern="/[0-9]{9}/" ng-maxlength="9" ng-model="worker.id" required />
+                <label>{{lang.workerName}}</label>
+                <input class="form-control" type="text" ng-model="worker.name" required />
+                </form>
             </div>
             <div class="panel-footer">
-                <button ng-click="login()" class="center-block btn btn-success">אישור</button>
-                {{nico}}
+                <div style="text-align: center;">
+                    <button ng-click="createFirstUser()" ng-disabled="registerform.$invalid" class="btn btn-success">{{lang.ok}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary" ng-show="hasUsers">
+            <div class="panel-heading">{{lang.login}}</div>
+            <div class="panel-body">
+                <form name="loginform">
+                <label>{{lang.idNumber}}</label>
+                <input class="form-control" type="text" ng-pattern="/[0-9]{9}/" ng-maxlength="9" ng-model="idNumber" required />
+                <span style="color: #ac2925">{{loginerror}}</span>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div style="text-align: center;">
+                    <button ng-click="login()" ng-disabled="loginform.$invalid" class="btn btn-success">{{lang.ok}}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -38,13 +58,13 @@
     <div class="navber navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-right">
-                <span class="navbar-brand">מצב עובד</span>
+                <span class="navbar-brand">{{lang.store}}</span>
             </div>
             <div class="navbar-header">
                 <div class="navbar-brand">
                     <div class="btn-group-xs">
-                        <a href="admin.html" class="btn btn-primary">לוח בקרה</a>
-                        <button ng-click="logout()" class="btn btn-danger">יציאה</button>
+                        <a href="admin.html" class="btn btn-primary" ng-show="worker.isAdmin">{{lang.controlPanel}}</a>
+                        <button ng-click="logout()" class="btn btn-danger">{{lang.exit}}</button>
                     </div>
                 </div>
             </div>

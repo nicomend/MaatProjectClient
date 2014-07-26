@@ -20,41 +20,48 @@ app.config([ '$routeProvider', function ($routeProvider) {
 }]);
 
 function Store($scope, $location, $http) {
-    var sessionKey = "user";
+    var sessionKey = "worker";
     $scope.toolbar = "html/toolbar/workerToolbar.html";
-    $scope.login = "html/workerViews/login.html";
 
-    localStorage.clear();
-    $scope.refreshUser = function()
-    {
-        $scope.user = sessionStorage.getItem(sessionKey);
-        $scope.isUserConnected = $scope.user != null;
+    $scope.refreshUser = function () {
+        $scope.worker = JSON.parse(sessionStorage.getItem(sessionKey));
+        $scope.isUserConnected = $scope.worker != null;
     }
 
     $scope.refreshUser();
-    if (sessionStorage.getItem("cart") == null) {
-        $scope.cart = {products: [], currentPrice: 0, checkoutCompleted: false};
-    }
-    else
-    {
+
+    $http.get("http://localhost:9000/workers").success(function (data) {
+        $scope.hasUsers = data.length > 0;
+    }).error(function () {
+        $scope.hasUsers = false;
+    });
+
+    if (sessionStorage.getItem("cart") != null) {
         $scope.cart = JSON.parse(sessionStorage.getItem("cart"));
     }
+    else {
+        $scope.cart = {products: [], currentPrice: 0, checkoutCompleted: false};
+    }
 
-    // init menu items
-    $scope.tabs = [
-        {
-            'label': 'קטגוריות',
-            'url': '/categories'
-        },
-        {
-            'label': 'מוצרים',
-            'url': '/products'
-        },
-        {
-            'label': 'עגלת קניות',
-            'url': '/cart'
-        }
-    ];
+    $http.get('lang.json').success(function (data) {
+        $scope.lang = data;
+
+        // init menu items
+        $scope.tabs = [
+            {
+                'label': $scope.lang.categories,
+                'url': '/categories'
+            },
+            {
+                'label': $scope.lang.products,
+                'url': '/products'
+            },
+            {
+                'label': $scope.lang.cart,
+                'url': '/cart'
+            }
+        ];
+    });
 
     $scope.addToCart = function (product) {
         if ($scope.cart.products.length === 0) {
@@ -81,13 +88,25 @@ function Store($scope, $location, $http) {
         sessionStorage.setItem("cart", JSON.stringify($scope.cart));
     };
 
-    $scope.login = function(){
-        sessionStorage.setItem(sessionKey, "nico");
+    $scope.login = function () {
+        $http.post("http://localhost:9000/login", $scope.idNumber).success(function (data) {
+            sessionStorage.setItem(sessionKey, JSON.stringify(data));
+            $scope.refreshUser();
+        }).error(function () {
+            $scope.loginerror = $scope.lang.connectionError;
+        });
+
+    };
+
+    $scope.logout = function () {
+        sessionStorage.removeItem(sessionKey);
         $scope.refreshUser();
     };
 
-    $scope.logout = function(){
-        sessionStorage.removeItem(sessionKey);
-        $scope.refreshUser();
+    $scope.createFirstUser = function () {
+        $scope.worker.isAdmin = true;
+        $http.post("http://localhost:9000/admin/worker/create", $scope.worker).success(function (data) {
+            $scope.hasUsers = true;
+        });
     };
 }

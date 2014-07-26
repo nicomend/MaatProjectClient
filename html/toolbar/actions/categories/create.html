@@ -1,6 +1,6 @@
-<label for="name">שם הקטגוריה</label>
+<label for="name">{{lang.categoryName}}</label>
 <input type='text' class="form-control" ng-model="newCategory.name"
 	id="name" required="required" />
 <br />
 <button class='btn btn-success btn-sm' ng-click='create()'
-	ng-disabled="createForm.$invalid">אישור</button>
+	ng-disabled="createForm.$invalid">{{lang.ok}}</button>

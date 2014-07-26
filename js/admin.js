@@ -28,32 +28,35 @@ app.run(function (editableOptions, editableThemes) {
     editableThemes.bs3.buttonsClass = 'btn-sm';
 });
 
-function Admin($scope, $location) {
+function Admin($scope, $location, $http) {
     $scope.toolbar = "html/toolbar/adminToolbar.html";
+    $http.get("lang.json").success(function (data, status) {
+        $scope.lang = data;
 
-    // init menu items
-    $scope.tabs = [
-        {
-            'label': 'ראשי',
-            'url': '/main'
-        },
-        {
-            'label': 'ניהול קטגוריות',
-            'url': '/categories'
-        },
-        {
-            'label': 'ניהול מוצרים',
-            'url': '/products'
-        },
-        {
-            'label': 'ניהול עובדים',
-            url: '/workers'
-        },
-        {
-            'label': 'מכירות',
-            url: '/sales'
-        }
-    ];
+        // init menu items
+        $scope.tabs = [
+            {
+                'label': $scope.lang.main,
+                'url': '/main'
+            },
+            {
+                'label': $scope.lang.manageCategories,
+                'url': '/categories'
+            },
+            {
+                'label': $scope.lang.manageProducts,
+                'url': '/products'
+            },
+            {
+                'label': $scope.lang.manageWorkers,
+                url: '/workers'
+            },
+            {
+                'label': $scope.lang.sales,
+                url: '/sales'
+            }
+        ];
+    });
 
     $scope.isActive = function (tab) {
         return tab.url === $location.path();

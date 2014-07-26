@@ -1,12 +1,12 @@
 
-<h2 class="sub-header">קטגוריות</h2>
+<h2 class="sub-header">{{lang.categories}}</h2>
 <div ng-include="toolbar"></div>
-<table class="table table-hover" style="width: 50%;"
+<table class="table table-hover"
        ng-hide="categories.length == 0">
     <thead>
     <tr>
-        <th>שם הקטגוריה</th>
-        <th>כמות מוצרים</th>
+        <th>{{lang.categoryName}}</th>
+        <th>{{lang.productsCount}}</th>
     </tr>
     </thead>
     <tbody>
@@ -18,4 +18,4 @@
     </tbody>
 </table>
 <div class="alert alert-danger" style="margin-top: 5px;"
-     ng-show="categories.length == 0">לא קיימות קטגוריות במערכת</div>
+     ng-show="categories.length == 0">{{lang.noCategories}}</div>

@@ -1,11 +1,11 @@
-<h2 class="sub-header">ניהול עובדים</h2>
+<h2 class="sub-header">{{lang.manageWorkers}}</h2>
 <div ng-include="toolbar"></div>
 <table class="table table-hover"
        ng-hide="workers.length == 0">
     <thead>
     <tr>
-        <th>תעודת זהות</th>
-        <th>שם העובד</th>
+        <th>{{lang.idNumber}}</th>
+        <th>{{lang.workerName}}</th>
     </tr>
     </thead>
     <tbody>
@@ -18,9 +18,9 @@
 </table>
 <div class="alert alert-danger" style="margin-top: 5px;"
      ng-show="workers.length == 0">
-    עדיין לא הוספת עובדים למערכת, לחץ על
+    {{lang.pressToAddWorkers}}
     <button class="btn btn-xs btn-success" disabled>
         <span class="glyphicon glyphicon-plus-sign"></span>
     </button>
-    כדי להתחיל
+    {{lang.toStart}}
 </div>
